@@ -8,13 +8,18 @@ import android.view.MenuItem;
 
 
 public class MainActivity extends ActionBarActivity {
+    private static DataBaseManager Manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Manager = new DataBaseManager(this);
     }
 
+    public static DataBaseManager getManager() {
+        return Manager;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -30,16 +35,14 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.lista) {
-            Intent i=new Intent(this,Base.class);
-            startActivity(i);
+        if (id == R.id.actmapa) {
+            Intent m = new Intent(this,MapActivity.class);
+            startActivity(m);
             return true;
         }
-
-        if (id == R.id.ver) {
-            Intent i=new Intent(this,MapActivity.class);
-            startActivity(i);
-
+        if (id == R.id.actform) {
+            Intent f = new Intent(this,FormularioActivity.class);
+            startActivity(f);
             return true;
         }
 

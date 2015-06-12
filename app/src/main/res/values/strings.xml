@@ -5,9 +5,18 @@
     <string name="nuevo">Ver Lista</string>
     <string name="ver">Ver en Mapa</string>
     <string name="titulo">Crepes &amp; Waffles</string>
-    <string name="info">
+    <string name="info2">
         En Crepes &amp; Waffles servimos arte con amor, conquistamos corazones, cautivamos paladares, promovemos mil encuentros. desde 1980 lo más importante ha sido servir arte.
     </string>
+
+    <string name="info">
+        Si miel y chocolate endulzan, entonces endulcemos el alma. Si pimienta y curry pican toquemos la piel.
+    </string>
+
+    <string name="info3">
+        Equilibrio entre tecnología y alimentos seguros, sanos y frescos.
+    </string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -16,5 +25,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_base">Base</string>
-    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_map">Mapa</string>
+    <string name="title_activity_formulario">Formulario</string>
 </resources>

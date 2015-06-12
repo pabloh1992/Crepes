@@ -5,51 +5,41 @@
         android:layout_height="match_parent"
         android:name="com.google.android.gms.maps.MapFragment"/> -->
 
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
+tools:context="com.pablohenao.crepes.MapActivity"
 android:orientation="vertical">
-
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
+    android:layout_height="match_parent"
+    android:layout_weight="12">
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Home Location"
-        android:onClick="onClickHome"
+        android:layout_height="match_parent"
+        android:layout_weight="12"
+        android:text="Medellín"
+        android:onClick="onClick"
         android:id="@+id/button1"
         />
-
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="University Location"
-        android:onClick="onClickU"
+        android:layout_height="match_parent"
+        android:layout_weight="12"
+        android:text="Posición Actual"
+        android:onClick="onClick1"
         android:id="@+id/button2"
         />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Current Location"
-        android:onClick="onClickCurrent"
-        android:id="@+id/button3"
-        />
-
-
 </LinearLayout>
 
 <fragment
+    android:layout_weight="1"
+    android:id="@+id/map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.MapFragment"/>
+    android:name="com.google.android.gms.maps.MapFragment"
+    />
 
 </LinearLayout>
-

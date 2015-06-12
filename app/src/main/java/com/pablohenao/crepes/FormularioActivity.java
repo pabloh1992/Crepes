@@ -1,10 +1,11 @@
 package com.pablohenao.crepes;
+
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,34 +16,28 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.pablohenao.crepes.R.layout.*;
 
-/**
- * Created by Home on 01/06/2015.
- */
-public class Base extends ActionBarActivity implements View.OnClickListener {
-    private DataBaseManager Manager;
+public class FormularioActivity extends ActionBarActivity implements View.OnClickListener {
+
+    DataBaseManager Manager = MainActivity.getManager();
     private Cursor cursor;
     private ListView lista;
     private SimpleCursorAdapter adapter;
     private EditText Ednombre;
-    //private Button btnbuscar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(base);
+        setContentView(R.layout.activity_formulario);
 
-        Manager = new DataBaseManager(this);
         lista = (ListView) findViewById(android.R.id.list);
         Ednombre = (EditText) findViewById(R.id.EdText1);
 
-        String[] from = new String[]{Manager.CN_NAME,Manager.CN_LONGITUD,Manager.CN_LONGITUD};
-        int[] to = new int[]{R.id.texto1,R.id.texto2,R.id.texto2,R.id.texto2,};
+        String[] from = new String[]{Manager.CN_ID,Manager.CN_NAME};
+        int[] to = new int[]{android.R.id.text1,android.R.id.text2};
         cursor = Manager.cargarCursorContactos();
-        adapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,cursor,from,to,0);
+        adapter = new SimpleCursorAdapter(this,android.R.layout.two_line_list_item,cursor,from,to,0);
         lista.setAdapter(adapter);
-
 
         Button btnbuscar = (Button) findViewById(R.id.btn1);
         btnbuscar.setOnClickListener(this);
@@ -54,7 +49,37 @@ public class Base extends ActionBarActivity implements View.OnClickListener {
         btneliminar.setOnClickListener(this);
         Button btnactualizar = (Button) findViewById(R.id.btnactualizar);
         btnactualizar.setOnClickListener(this);
+    }
 
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_formulario, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.actmapa) {
+            Intent m = new Intent(this,MapActivity.class);
+            startActivity(m);
+            return true;
+        }
+        if (id == R.id.actmain) {
+            Intent ma = new Intent(this,MainActivity.class);
+            startActivity(ma);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -66,21 +91,22 @@ public class Base extends ActionBarActivity implements View.OnClickListener {
             lista = (ListView) findViewById(android.R.id.list);
             Ednombre = (EditText) findViewById(R.id.EdText1);
 
-            String[] from = new String[]{Manager.CN_NAME,Manager.CN_LONGITUD,Manager.CN_LONGITUD};
-            int[] to = new int[]{R.id.texto1,R.id.texto2,R.id.texto3};
+            String[] from = new String[]{Manager.CN_NAME,Manager.CN_LAT};
+            int[] to = new int[]{android.R.id.text1,android.R.id.text2};
             cursor = Manager.cargarCursorContactos();
-            adapter = new SimpleCursorAdapter(this,R.layout.list_item,cursor,from,to,0);
+            adapter = new SimpleCursorAdapter(this,android.R.layout.two_line_list_item,cursor,from,to,0);
             lista.setAdapter(adapter);
 
         }
         if (v.getId()==R.id.btninsertar){
             EditText nombre = (EditText) findViewById(R.id.EdNombre);
-            EditText longitud = (EditText) findViewById(R.id.EdLongitud);
             EditText latitud = (EditText) findViewById(R.id.EdLatitud);
-            Manager.insertar(nombre.getText().toString(),longitud.getText().toString(),latitud.getText().toString());
+            EditText longitud = (EditText) findViewById(R.id.EdLong);
+            Manager.insertar(nombre.getText().toString(),latitud.getText().toString(),longitud.getText().toString());
             nombre.setText("");
+            latitud.setText("");
             longitud.setText("");
-            Toast.makeText(getApplicationContext(),"Insertado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Insertado", Toast.LENGTH_SHORT).show();
         }
         if(v.getId()==R.id.btneliminar){
             EditText nombre = (EditText) findViewById(R.id.EdNombre);
@@ -90,19 +116,18 @@ public class Base extends ActionBarActivity implements View.OnClickListener {
         }
         if (v.getId()==R.id.btnactualizar){
             EditText nombre = (EditText) findViewById(R.id.EdNombre);
-            EditText longitud = (EditText) findViewById(R.id.EdLongitud);
             EditText latitud = (EditText) findViewById(R.id.EdLatitud);
-            Manager.Modificardatos(nombre.getText().toString(),longitud.getText().toString(),latitud.getText().toString());
+            EditText longitud = (EditText) findViewById(R.id.EdLong);
+            Manager.Modificar(nombre.getText().toString(),latitud.getText().toString(),longitud.getText().toString());
             Toast.makeText(getApplicationContext(),"Actualizado", Toast.LENGTH_SHORT).show();
             nombre.setText("");
-            longitud.setText("");
             latitud.setText("");
+            longitud.setText("");
         }
     }
 
 
-
-    private class BuscarTask extends AsyncTask<Void, Void, Void>{
+    private class BuscarTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -123,27 +148,26 @@ public class Base extends ActionBarActivity implements View.OnClickListener {
             adapter.changeCursor(cursor);
             obtener();
         }
+
+
     }
 
     public void obtener () {
         TextView Txnombre = (TextView) findViewById(R.id.Txnombre);
-        TextView Txlongitud = (TextView) findViewById(R.id.TxLongitud);
         TextView Txlatitud = (TextView) findViewById(R.id.TxLatitud);
-        try{
+        TextView Txlongitud = (TextView) findViewById(R.id.TxLongitud);
+        if (cursor.moveToFirst()){
             String dbnombre = cursor.getString(cursor.getColumnIndex(Manager.CN_NAME));
             Txnombre.setText(dbnombre);
-            String dblongitud = cursor.getString(cursor.getColumnIndex(Manager.CN_LONGITUD));
-            Txlongitud.setText(dblongitud);
-            String dblatitud = cursor.getString(cursor.getColumnIndex(Manager.CN_LATITUD));
+            String dblatitud = cursor.getString(cursor.getColumnIndex(Manager.CN_LAT));
             Txlatitud.setText(dblatitud);
-        }
-        catch(CursorIndexOutOfBoundsException e){
+            String dblongitud = cursor.getString(cursor.getColumnIndex(Manager.CN_LONG));
+            Txlongitud.setText(dblongitud);}
+        else{
             Txnombre.setText("Not Found");
-            Txlongitud.setText("Not Found");
             Txlatitud.setText("Not Found");
+            Txlongitud.setText("Not Found");
         }
 
     }
-
-
 }
