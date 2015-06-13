@@ -56,6 +56,14 @@ public class DataBaseManager {
         db.update(TABLE_NAME,generarContentValues(nombre,nuevoLAT,nuevoLONG),CN_NAME+"=?",new String[]{nombre});
     }
 
+    public void Modificarlat(String nombre, String nuevoLAT, String nuevoLONG){
+        db.update(TABLE_NAME,generarContentValues(nombre,nuevoLAT,nuevoLONG),CN_NAME+"=?",new String[]{nombre});
+    }
+
+    public void Modificarlong(String nombre, String nuevoLAT, String nuevoLONG){
+        db.update(TABLE_NAME,generarContentValues(nombre,nuevoLAT,nuevoLONG),CN_NAME+"=?",new String[]{nombre});
+    }
+
     public Cursor buscarContacto(String Nombre) {
         String [] columnas = new String[]{CN_ID,CN_NAME,CN_LAT,CN_LONG};
         return db.query(TABLE_NAME,columnas,CN_NAME + "=?",new String[]{Nombre},null,null,null);

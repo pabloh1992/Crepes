@@ -90,7 +90,7 @@ public class MapActivity extends ActionBarActivity implements
 
         }
         else{
-            Toast.makeText(getApplicationContext(), "no hay Restaurantes ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "No hay sedes registradas", Toast.LENGTH_SHORT).show();
         }
     }
 

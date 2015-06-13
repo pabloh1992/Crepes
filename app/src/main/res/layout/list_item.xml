@@ -11,6 +11,7 @@
         android:layout_weight="1"
         android:textSize="15dp"
         android:text="Restaurante"
+        android:textColor="@color/goldenrod"
         android:id="@+id/texto1"
         />
 
@@ -20,6 +21,7 @@
         android:layout_weight="1"
         android:textSize="15dp"
         android:text="Longitud"
+        android:textColor="@color/goldenrod"
         android:id="@+id/texto3"
         />
 

@@ -118,7 +118,25 @@ public class FormularioActivity extends ActionBarActivity implements View.OnClic
             EditText nombre = (EditText) findViewById(R.id.EdNombre);
             EditText latitud = (EditText) findViewById(R.id.EdLatitud);
             EditText longitud = (EditText) findViewById(R.id.EdLong);
-            Manager.Modificar(nombre.getText().toString(),latitud.getText().toString(),longitud.getText().toString());
+
+            TextView Txnombre = (TextView) findViewById(R.id.Txnombre);
+            TextView Txlatitud = (TextView) findViewById(R.id.TxLatitud);
+            TextView Txlongitud = (TextView) findViewById(R.id.TxLongitud);
+
+            String lat = latitud.getText().toString();
+            if(lat.isEmpty()){
+
+                if (cursor.moveToFirst()) lat = cursor.getString(cursor.getColumnIndex(Manager.CN_LAT));
+            }
+
+            String longi = longitud.getText().toString();
+            if(longi.isEmpty()){
+
+                if (cursor.moveToFirst()) longi = cursor.getString(cursor.getColumnIndex(Manager.CN_LONG));
+            }
+
+            Manager.Modificar(nombre.getText().toString(),lat,longi);
+
             Toast.makeText(getApplicationContext(),"Actualizado", Toast.LENGTH_SHORT).show();
             nombre.setText("");
             latitud.setText("");
@@ -139,8 +157,6 @@ public class FormularioActivity extends ActionBarActivity implements View.OnClic
             cursor = Manager.buscarContacto(Ednombre.getText().toString());
             return null;
         }
-
-
 
         @Override
         protected void onPostExecute(Void aVoid) {

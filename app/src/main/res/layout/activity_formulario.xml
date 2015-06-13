@@ -1,6 +1,6 @@
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
 
     >
@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:orientation="vertical">
       <!--  android:background="@drawable/fondotransp" -->
 
@@ -16,19 +17,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.1"
-            android:text="Crepes "
-            android:textSize="40dp"/>
+            android:text="@string/titulo"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/maroon"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="horizontal"
+
             android:layout_weight="3">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+
                 android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -60,6 +66,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
+                        android:textColor="@color/maroon"
                         android:layout_weight="2"
                         android:text="Nombre"/>
                     <EditText
@@ -79,11 +86,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
+                        android:textColor="@color/maroon"
                         android:layout_weight="1.8"
                         android:text="Latitud"/>
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+
                         android:layout_weight="1"
                         android:id="@+id/EdLatitud"
                         />
@@ -98,12 +107,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
+                        android:textColor="@color/maroon"
                         android:layout_weight="1.8"
                         android:text="Longitud"/>
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+
                         android:id="@+id/EdLong"
                         />
                 </LinearLayout>
@@ -156,6 +167,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
+                        android:textColor="@color/maroon"
                         android:text="Nombre"
                         android:layout_weight="1"
                         />
@@ -164,6 +176,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="20dp"
+                        android:textColor="@color/maroon"
                         android:id="@+id/Txnombre"
                         />
                 </LinearLayout>
@@ -175,6 +188,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
+                        android:textColor="@color/maroon"
                         android:layout_weight="1"
                         android:text="Latitud"
                         />
@@ -183,6 +197,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="20dp"
+                        android:textColor="@color/maroon"
                         android:id="@+id/TxLatitud"
                         />
                 </LinearLayout>
@@ -194,6 +209,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
+                        android:textColor="@color/maroon"
                         android:layout_weight="1"
                         android:text="Longitud"
                         />
@@ -202,6 +218,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="20dp"
+                        android:textColor="@color/maroon"
                         android:id="@+id/TxLongitud"
                         />
                 </LinearLayout>
